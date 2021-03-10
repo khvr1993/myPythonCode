@@ -3,5 +3,6 @@
     "activityBar.background": "#571707",
     "titleBar.activeBackground": "#7A200A",
     "titleBar.activeForeground": "#FFFBFB"
-  }
+  },
+  "python.pythonPath": "/home/harshavardhanreddyk/anaconda3/bin/python"
 }
