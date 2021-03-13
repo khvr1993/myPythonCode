@@ -24,7 +24,7 @@ def fill_default_palindromes(str):
     end = start+size-1
     if end >= len(str):
       # print(end)
-      break;
+      break
     if str[start] == str[end]:
       dp_table[start][end] = 1
     else:
