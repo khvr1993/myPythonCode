@@ -11,6 +11,8 @@ def mergeSort(arr):
 		# into 2 halves
 		R = arr[mid:]
 
+		print(f"Left {L} Right{R}")
+
 		# Sorting the first half
 		mergeSort(L)
 
@@ -18,6 +20,8 @@ def mergeSort(arr):
 		mergeSort(R)
 
 		i = j = k = 0
+
+		print(f"i = {i} j = {j} k = {k} array1 {L} and array2 {R}")
 
 		# Copy data to temp arrays L[] and R[]
 		while i < len(L) and j < len(R):
@@ -39,7 +43,7 @@ def mergeSort(arr):
 			arr[k] = R[j]
 			j += 1
 			k += 1
-
+		print(arr)
 # Code to print the list
 
 
@@ -51,7 +55,7 @@ def printList(arr):
 
 # Driver Code
 if __name__ == '__main__':
-	arr = [12, 11, 13, 5, 6, 7]
+	arr = [12, 15, 13, 5, 6, 7]
 	print("Given array is", end="\n")
 	printList(arr)
 	mergeSort(arr)
