@@ -33,7 +33,7 @@ def fill_default_palindromes(str):
   # print_matrix(dp_table)
 
 def build_dp_table(str):
-  """builds the DP Table for the lenght of the string"""
+  """builds the DP Table for the length of the string"""
   global dp_table
   rows,cols = len(str),len(str)
   dp_table = [[0 for i in range(cols)] for j in range(rows)]
@@ -68,15 +68,21 @@ def fill_dp_table(str):
 def find_longest_palindrome():
   row = 0
   max_length = 1
+  """
+    After the dp table is filled we need to navigate through the dp table and
+    find the point where the maximum length is present.
+    From the dp table the length of the string is start+end-1 (dp[start][end])
+  """
   for rows in dp_table:
     for cols in range(len(rows)):
       # print(f"rows {row} cols {cols} value at the position is {rows[cols]}")
+      # 1 => that the string is a palindrome
       if rows[cols] == 1:
         len_of_palindrome = cols - row +1
         # Determine the maximum length of the palindrome
         if len_of_palindrome > max_length:
           max_length = len_of_palindrome
-          start,end = row,cols
+          start,end = row,cols # The point at which the maxima has occurred
     row += 1
   return start,end
 
