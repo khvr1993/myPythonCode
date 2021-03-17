@@ -2,7 +2,9 @@ class Solution:
 
   def longestcommonsubsequence_recursion(self,string_1 :str,string_2 :str) -> int:
     """
-    Given two sequences, find the length of longest subsequence present in both of them. A subsequence is a sequence that appears in the same relative order, but not necessarily contiguous. For example, “abc”, “abg”, “bdf”, “aeg”, ‘”acefg”, .. etc are subsequences of “abcdefg”
+    Given two sequences, find the length of longest subsequence present in both of them.
+    A subsequence is a sequence that appears in the same relative order, but not necessarily contiguous.
+    For example, “abc”, “abg”, “bdf”, “aeg”, ‘”acefg”, .. etc are subsequences of “abcdefg”
 
     when finding common substrings we do the following actions
     acefg    -> A
@@ -25,8 +27,6 @@ class Solution:
 
     len_string1 = len(string_1)
     len_string2 = len(string_2)
-    match = []
-
 
     def lcs(i :int,j: int ) -> int:
       """
@@ -35,7 +35,8 @@ class Solution:
       # print("----------")
       # print(f"Parameters i = {i} j = {j} ")
 
-      if i == len_string1  or j == len_string2 : #Exit Condition ANy string end reached
+      if i == len_string1  or j == len_string2 :
+        #Exit Condition ANy string end reached
         return 0
 
       # print(f"String value is {string_1[i]} and {string_2[j]}")
