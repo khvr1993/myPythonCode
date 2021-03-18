@@ -2,7 +2,7 @@ from typing import List
 
 class Solution:
 
-  def longestcommonsubsequence_recursion(self,string_1 :str,string_2 :str) -> int:
+  def longestcommonsubsequence_memoization(self,string_1 :str,string_2 :str) -> int:
     """
     Given two sequences, find the length of longest subsequence present in both of them.
     A subsequence is a sequence that appears in the same relative order, but not necessarily contiguous.
@@ -73,7 +73,7 @@ class Solution:
 
 s= Solution()
 string_1 = "abc"
-string_2 = "def"
-op = s.longestcommonsubsequence_recursion(string_1,string_2)
+string_2 = "defa"
+op = s.longestcommonsubsequence_memoization(string_1,string_2)
 
 print(op)
