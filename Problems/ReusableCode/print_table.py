@@ -1,6 +1,7 @@
 from typing import List
 
-def printtable(table : List[int]):
+def print_table(table : List[int]):
   """Prints the table"""
   for row in table:
     print(row)
+  print("------------------------")
