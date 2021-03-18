@@ -3,15 +3,14 @@ class Solution:
 		def isValid(self, s: str) -> bool:
 			"""
 				Returns whether the str is eligible for valid substitution
+				Check initial conidtions.
+				Always the first and last elements should be a and c drespectively.
+				if Not return false
+				if the length of the string is < 3 return false
+				initialise an array.
+				In a loop traverse through the string and keep inserting the values.
+				When we encounter the letter c POP the elements and check whether we are getting b and a
 			"""
-		# Check initial conidtions.
-		# Always the first and last elements should be a and c drespectively.
-		# if Not return false
-		# if the length of the string is < 3 return false
-		# initialise an array.
-		# In a loop traverse through the string and keep inserting the values.
-		# When we encounter the letter c POP the elements and check whether we are getting b and a
-
 			if len(s) < 3 or s[0] != 'a' or s[-1] != 'c' or len(s)%3 != 0 :
 				return False
 
