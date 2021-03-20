@@ -1,3 +1,7 @@
+# Python3 code to remove whitespace
+def remove(string):
+    return "".join(string.split())
+
 class Solution:
 	def kmp(self,s ,pattern) :
 		"""
@@ -25,18 +29,26 @@ class Solution:
 		next val
 
 		"""
-		# create pi table
-
-		print(pattern)
 		len_pattern = len(pattern)
+		str_1 = remove(s)
+		len_string = len(str_1)
 
-		print(f"length of pattern {len_pattern}")
+		if len_pattern > len_string:
+			return False
+
+		if len_pattern == 1:
+			if pattern in s:
+				return True
+
+		# print(f"length of pattern {len_pattern}")
 
 		pi_table = [0 for _ in range(len_pattern) ]
 
-		print(pi_table)
+		# print(pi_table)
 
 		# build the pi_table with the correct indices
+		# create pi table
+
 		i = 1
 		j = 0
 
@@ -55,19 +67,48 @@ class Solution:
 				# move the position of j to the position present in the pi table[j-1]
 				# if the j position is already at 0 then increment i
 				# We are doing to see what is the length of the string which is a prefix as
-				# well as suffix
-				# for eg in acacabacacabacacac acac at the end is prefix as well as suffix a
+				# well as suffix for eg in acacabacacabacacac acac at the end is prefix as well as suffix
+
 				if j != 0:
 					j = pi_table[j-1]
 				else:
 					i += 1
 
-		print(pi_table)
-		return True
+		# print(pattern_list)
+		# print(pi_table)
+
+
+		# Check in the string whether match is present
+		"""
+			If the str_1[i] and pattern[j] is same then increment i and j.
+			Do this until you find a mismatch. Once mismatch is found find the length of maximum
+			substring which is prefix as well as suffix and start comparing from there
+
+		"""
+
+		j = 0
+		i = 0
+		while i < len_string:
+			# print(f"value is {str_1[i]} at {i} and pattern is {pattern[j]} at {j}")
+			if str_1[i] == pattern[j]:
+				i += 1
+				j += 1
+				if j == len_pattern-1:
+					# print("Match Found")
+					return True
+			else:
+				if j != 0:
+					j = pi_table[j-1]
+				else:
+					i += 1
+				# print(f"j moved to look at {j}")
+
+		return False
 
 kmp = Solution()
-s = 'THIS IS A TEST TEXT'
-pattern = 'acacabacacabacacac'
+s = 'dog cat cat dog'
+pattern = 'abcdabcy'
 op = kmp.kmp(s,pattern=pattern)
+print(op)
 
 
