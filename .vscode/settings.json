@@ -4,5 +4,8 @@
     "titleBar.activeBackground": "#7A200A",
     "titleBar.activeForeground": "#FFFBFB"
   },
-  "python.pythonPath": "/home/harshavardhanreddyk/anaconda3/bin/python"
+  "python.pythonPath": "/usr/bin/python3",
+  "python.linting.pylintEnabled": false,
+  "python.linting.mypyEnabled": true,
+  "python.linting.enabled": true
 }
