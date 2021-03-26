@@ -11,7 +11,6 @@ class Solution:
 
       """
 
-
       op = []
       is_a_prefix = True
 
@@ -55,4 +54,9 @@ class Solution:
 
       return "".join(op)
 
+pbm = Solution()
+strs =  ["flower","flow","flight"]
+op = pbm.longestCommonPrefix(strs)
+
+print(op)
 
