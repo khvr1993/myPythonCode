@@ -1,0 +1,2 @@
+Find the middle of a given linked list
+Function to check if a singly linked list is palindrome
