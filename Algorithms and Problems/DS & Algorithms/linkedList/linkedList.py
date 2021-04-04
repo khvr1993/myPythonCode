@@ -34,6 +34,19 @@ class LinkedList:
       self.head = Node(val)
       self.head.next = temp
 
+  def pop_node(self):
+    """
+      Pops the first element out of the list
+    """
+    if self.head == None:
+      print("No Node present in the list to pop")
+    else :
+      temp = self.head.next
+      ret_val = self.head.val
+      self.head = temp
+      print(f"Popped NodeVal is {ret_val}")
+      return ret_val
+
   def print_list(self):
     li = self.head
     while li :
@@ -46,11 +59,12 @@ s_list.insertNode(4)
 s_list.insertNode(5)
 s_list.insertNode(6)
 s_list.insertNode(47)
-s_list.insertNode(8)
+s_list.insertNode(815)
 
 s_list.print_list()
 
-
+s_list.pop_node()
+s_list.print_list()
 
 
 
