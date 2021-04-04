@@ -28,6 +28,8 @@ class Solution:
 
         """
 
+        # Instead of declaring so many variables we can take an array of {1,-1} and {-1,1}
+        # cross join it to get 1,1 ; 1-1;-1,1;-1;-1,-1 and get the same expression evaluated
         max_expr1 = -2147483647
         max_expr2 = -2147483647
         max_expr3 = -2147483647
