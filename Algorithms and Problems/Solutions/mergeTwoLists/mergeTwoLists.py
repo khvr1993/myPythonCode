@@ -7,6 +7,10 @@ from typing import ListNode
 #         self.next = next
 class Solution:
     def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
+        """
+        https://leetcode.com/problems/merge-two-sorted-lists/
+        Merge two sorted linked lists and return it as a sorted list. The list should be made by splicing together the nodes of the first two lists.
+        """
         head = ListNode();
         curr_node = head
 
