@@ -29,44 +29,98 @@ class binarySearchTree:
 
     Binary Search Tree is a node-based binary tree data structure which has the following properties:
 
-                                    The left subtree of a node contains only nodes with keys lesser than the node’s key.
-                                    The right subtree of a node contains only nodes with keys greater than the node’s key.
-                                    The left and right subtree each must also be a binary search tree.s
+    The left subtree of a node contains only nodes with keys lesser than the node’s key.
+    The right subtree of a node contains only nodes with keys greater than the node’s key.
+    The left and right subtree each must also be a binary search tree.s
     """
 
     # Constructor method for the binary search tree
     def __init__(self):
         self.root = None
 
-    def put(self, root, key, value):
+    def put (self,key,value):
+        if self.root == None:
+            self.root = Node(key, value)
+            return
+        else :
+            self.__put(self.root,key,value)
+
+    def floor(self, key):
+        """
+        returns the floor
+        """
+        return self.__floor(self.root, key)
+
+    def size(self):
+        """
+        returns the size of the BST
+        """
+        s = self.__size(self.root)
+        return s
+
+    def deleteMin(self):
+        """
+        Deletes the minimum value in a binary tree
+        1. return the node which is just greater than the minimum
+        2. We have to go left till we are left with a null link
+        3. Replace that node with its right link
+        4. Update subtree counts
+        """
+        root = self.__deleteMin(self.root)
+        print(root)
+
+    def height(self,node: Node) -> int:
+        """
+        This process tells you the height of the tree from that particular Node
+        """
+        if node == None:
+            height = self.__height(self.root)
+        else :
+            height = self.__height(node)
+
+        return height
+
+    def bft(self,node: Node):
+        """
+        Breadth First Traversal
+        Breadth-first search (BFS) is an algorithm for traversing or searching tree or graph data structures.
+        It starts at the tree root (or some arbitrary node of a graph, sometimes referred to as a 'search key'[1]),
+        and explores all of the neighbor nodes at the present depth prior to moving on to the nodes at the next depth level.
+
+        https://www.geeksforgeeks.org/level-order-tree-traversal/
+
+        """
+        self.__print_level_order(node)
+
+    def __put(self, node, key, value):
         """
         Inserts the node into the right place
         """
         print(f"===================")
-        print(f"Root => {root}")
+        print(f"node => {node}")
         print(f"Key being inserted : {key} Value is {value} ")
 
         if self.root == None:
             self.root = Node(key, value)
             return
 
-        if root == None:
+        if node == None:
             return Node(key, value)
 
-        print(f"{root.key > key}")
+        print(f"{node.key > key}")
 
-        if root.key > key:
-            root.left_node = self.put(root.left_node, key, value)
-        elif root.key < key:
-            root.right_node = self.put(root.right_node, key, value)
+        if node.key > key:
+            node.left_node = self.__put(node.left_node, key, value)
+        elif node.key < key:
+            node.right_node = self.__put(node.right_node, key, value)
         else:
-            root.value = value
-            root.key = key
+            node.value = value
+            node.key = key
 
-        root.size = 1 + self.__size(root.left_node) + self.__size(root.right_node)
+        node.size = 1 + self.__size(node.left_node) + self.__size(node.right_node)
 
         print(f"===================")
-        return root
+        return node
 
     def __floor(self, root, key):
         if root == None:
@@ -82,35 +136,11 @@ class binarySearchTree:
             else:
                 return root
 
-    def floor(self, key):
-        """
-        returns the floor
-        """
-        return self.__floor(self.root, key)
-
-    def size(self):
-        """
-        returns the size of the BST
-        """
-        s = self.__size(self.root)
-        return s
-
     def __size(self, root):
         if root == None:
             return 0
         else:
             return root.size
-
-    def deleteMin(self):
-        """
-        Deletes the minimum value in a binary tree
-        1. return the node which is just greater than the minimum
-        2. We have to go left till we are left with a null link
-        3. Replace that node with its right link
-        4. Update subtree counts
-        """
-        root = self.__deleteMin(self.root)
-        print(root)
 
     def __deleteMin(self, x):
         if x.left_node == None:
@@ -122,20 +152,70 @@ class binarySearchTree:
 
         return x
 
+    def __height(self,node) -> int:
+        if node == None:
+            return 0
+        else:
+            # Here we first calculate the left side hieght and right side height and return the value
+            left_height = self.__height(node.left_node)
+            right_height = self.__height(node.right_node)
+
+        if left_height > right_height:
+            return 1 + left_height # Adding one to include the root node value
+        else :
+            return 1 + right_height
+
+    def __print_level_order(self,node):
+        """
+        From the given node print all the levels
+        """
+        height = self.height(node)
+        for i in range(1,height+1):
+            # From the given node level we go and print its following elements
+            # node,node.left,node.right
+            # node.left.left,node.left.right ; node.right.left,node.right.right ...
+            self.__print_given_level(node,i)
+
+    def __print_given_level(self,node,level):
+        """
+        Prints the nodes at the given level using recursive approach
+        """
+        #Reached the end
+        if node == None:
+            return
+
+        # Reached the desired level after recursion
+        if level == 1:
+            print(node.key,end = ' ')
+        elif level > 1 :
+            # As level decreases we go to the next level of the binary search tree
+            # Print the left side Node
+            self.__print_given_level(node.left_node,level-1)
+            # Print the right side node
+            self.__print_given_level(node.right_node,level-1)
+
+
 
 
 s = binarySearchTree()
-s.root = Node(50, "x")
-s.put(s.root, 100, "y")
-s.put(s.root, 40, "z")
-s.put(s.root, 60, "a")
-s.put(s.root, 110, "a")
+s.put(50, "a")
+s.put(100, "b")
+s.put( 40, "c")
+s.put(60, "d")
+s.put(110, "e")
 print(f"Size {s.size()}")
 print(f"delete Min {s.deleteMin()}")
 print(f"Size {s.size()}")
+s.put(40, "f")
+s.put(120,"g")
+s.put(10,"h")
+s.put(20,"i")
+s.put(130,"j")
 
 print(f"root {s.root} ")
 print(f"Left Node {s.root.left_node}")
 print(f"Right Node {s.root.right_node.left_node}")
 print(f"Right Node {s.root.right_node.right_node}")
 print(f"Floor of 70 is {s.floor(70)}")
+print(f"Height of the tree is {s.height(None)}")
+s.bft(s.root)
