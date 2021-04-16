@@ -91,14 +91,61 @@ class binarySearchTree:
 
         """
         self.__print_level_order(node)
+        print("")
+
+    def inorder_traversal(self):
+        """
+        For a tree with root 1 ; left node 2 and right node 3
+                    1
+                2       3
+            4       5
+
+        the Depth First Traversals of this Tree will be:
+        (a) Inorder   (Left, Root, Right) : 4 2 5 1 3
+        (b) Preorder  (Root, Left, Right) : 1 2 4 5 3
+        (c) Postorder (Left, Right, Root) : 4 5 2 3 1
+        """
+        self.__inorder_traversal(self.root)
+        print("")
+
+    def preorder_traversal(self):
+        """
+        For a tree with root 1 ; left node 2 and right node 3
+                    1
+                2       3
+            4       5
+
+        the Depth First Traversals of this Tree will be:
+        (a) Inorder   (Left, Root, Right) : 4 2 5 1 3
+        (b) Preorder  (Root, Left, Right) : 1 2 4 5 3
+        (c) Postorder (Left, Right, Root) : 4 5 2 3 1
+        """
+        self.__preorder_traversal(self.root)
+        print("")
+
+    def postorder_traversal(self):
+        """
+        For a tree with root 1 ; left node 2 and right node 3
+                    1
+                2       3
+            4       5
+
+        the Depth First Traversals of this Tree will be:
+        (a) Inorder   (Left, Root, Right) : 4 2 5 1 3
+        (b) Preorder  (Root, Left, Right) : 1 2 4 5 3
+        (c) Postorder (Left, Right, Root) : 4 5 2 3 1
+        """
+        self.__postorder_traversal(self.root)
+        print("")
+
 
     def __put(self, node, key, value):
         """
         Inserts the node into the right place
         """
-        print(f"===================")
-        print(f"node => {node}")
-        print(f"Key being inserted : {key} Value is {value} ")
+        # print(f"===================")
+        # print(f"node => {node}")
+        # print(f"Key being inserted : {key} Value is {value} ")
 
         if self.root == None:
             self.root = Node(key, value)
@@ -119,7 +166,7 @@ class binarySearchTree:
 
         node.size = 1 + self.__size(node.left_node) + self.__size(node.right_node)
 
-        print(f"===================")
+        # print(f"===================")
         return node
 
     def __floor(self, root, key):
@@ -176,26 +223,53 @@ class binarySearchTree:
             # node.left.left,node.left.right ; node.right.left,node.right.right ...
             self.__print_given_level(node,i)
 
-    def __print_given_level(self,node,level):
+    def __print_given_level(self,node,level,append = ""):
         """
         Prints the nodes at the given level using recursive approach
         """
         #Reached the end
+        if append == "":
+            append = "R"
         if node == None:
             return
 
         # Reached the desired level after recursion
         if level == 1:
-            print(node.key,end = ' ')
+            print(append+"-"+str(node.key),end = '  ')
         elif level > 1 :
             # As level decreases we go to the next level of the binary search tree
             # Print the left side Node
-            self.__print_given_level(node.left_node,level-1)
+            self.__print_given_level(node.left_node,level-1,'L')
             # Print the right side node
-            self.__print_given_level(node.right_node,level-1)
+            self.__print_given_level(node.right_node,level-1,'R')
+
+    def __inorder_traversal(self,node: Node):
+        """
+            Inorder traversal private method
+        """
+        if node:
+            self.__inorder_traversal(node.left_node)
+            print(node.key, end = " ")
+            self.__inorder_traversal(node.right_node)
 
 
+    def __preorder_traversal(self,node: Node):
+        """
+            Preorder Traversal
+        """
+        if node :
+            print(node.key, end = " ")
+            self.__inorder_traversal(node.left_node)
+            self.__inorder_traversal(node.right_node)
 
+    def __postorder_traversal(self,node:Node):
+        """
+            Postorder Traversal
+        """
+        if node:
+            self.__inorder_traversal(node.left_node)
+            self.__inorder_traversal(node.right_node)
+            print(node.key,end =" ")
 
 s = binarySearchTree()
 s.put(50, "a")
@@ -219,3 +293,6 @@ print(f"Right Node {s.root.right_node.right_node}")
 print(f"Floor of 70 is {s.floor(70)}")
 print(f"Height of the tree is {s.height(None)}")
 s.bft(s.root)
+s.inorder_traversal()
+s.preorder_traversal()
+s.postorder_traversal()
