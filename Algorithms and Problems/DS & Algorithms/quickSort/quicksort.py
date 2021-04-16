@@ -45,7 +45,7 @@ class Solution:
 
     def partition(low,high) -> int :
       """
-      Implements parition for quick sort
+      Implements partition for quick sort
       """
       pivot = arr[high]
 
