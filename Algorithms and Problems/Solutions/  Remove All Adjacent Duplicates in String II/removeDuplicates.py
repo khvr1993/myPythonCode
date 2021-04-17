@@ -13,6 +13,8 @@ class Solution:
         2. keep track of the count of elements being inserted.
         3. If count reaches k then pop the values and make the count of chars to 0
         4. repeat the process until dups are not found
+
+        Refer https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/ for more optimized way
         """
         print(f"Provided String {s} with k => {k}")
         def initialize_dict():
