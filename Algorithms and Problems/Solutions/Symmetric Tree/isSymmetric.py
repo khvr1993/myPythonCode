@@ -1,4 +1,4 @@
-from typing import TreeNode
+from typing import TreeNode,List
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -7,6 +7,13 @@ from typing import TreeNode
 #         self.right = right
 class Solution:
     def isSymmetric(self, root: TreeNode) -> bool:
+        """
+        https://leetcode.com/problems/symmetric-tree/
+
+        Better solution than current :
+        Create a function which takes 2 nodes as input .
+        Compare right node of T1 with left node of T2
+        """
         stack = []
         stack2 = []
         def build_stack(node: TreeNode,stack,traverse='LEFT') -> List[int]:
