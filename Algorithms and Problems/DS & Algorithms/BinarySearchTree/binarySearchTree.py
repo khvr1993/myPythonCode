@@ -183,11 +183,11 @@ class binarySearchTree:
             else:
                 return root
 
-    def __size(self, root):
-        if root == None:
+    def __size(self, node):
+        if node == None:
             return 0
         else:
-            return root.size
+            return node.size
 
     def __deleteMin(self, x):
         if x.left_node == None:
@@ -251,7 +251,6 @@ class binarySearchTree:
             self.__inorder_traversal(node.left_node)
             print(node.key, end = " ")
             self.__inorder_traversal(node.right_node)
-
 
     def __preorder_traversal(self,node: Node):
         """
